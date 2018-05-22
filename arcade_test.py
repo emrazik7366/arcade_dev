@@ -24,8 +24,8 @@ VIEWPORT_MARGIN = 40
 RIGHT_MARGIN = 650
 
 # Physics
-MOVEMENT_SPEED = 8
-JUMP_SPEED = 17
+MOVEMENT_SPEED = 7.5
+JUMP_SPEED = 19
 GRAVITY = 1.2
 
 
@@ -123,10 +123,6 @@ class MyGame(arcade.Window):
                     wall = arcade.Sprite("images/grassRight.png", SPRITE_SCALING)
                 elif item == 4:
                     wall = arcade.Sprite("images/stoneHalf.png", SPRITE_SCALING)
-                elif item == 5:
-                    wall = arcade.Sprite("images/foliagePack_010.png")
-                elif item == 6:
-                    wall = arcade.Sprite("images/foliagePack_001.png", SPRITE_SCALING)
 
                 if item > 1:
                     wall.right = column_index * 64
@@ -167,6 +163,10 @@ class MyGame(arcade.Window):
         output = f"Distance: {distance}"
 
         arcade.draw_text(output, self.view_left + 620, self.view_bottom + 550, arcade.color.WHITE, 14)
+        if self.game_over:
+            arcade.draw_text("Game Over", self.view_left + 300, self.view_bottom + 300, arcade.color.WHITE, 30)
+        
+
 
         
 
@@ -189,6 +189,8 @@ class MyGame(arcade.Window):
     def update(self, delta_time):
         """ Movement and game logic """
 
+
+        
         if self.player_sprite.right >= self.end_of_map:
             self.game_over = True
 
@@ -241,8 +243,11 @@ class MyGame(arcade.Window):
         boxes_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.box_list)
 
         for box in boxes_hit_list:
-            box.kill()
-            
+            self.game_over = True
+
+        if self.game_over:
+            arcade.draw_text("Game Over", 400, 300, arcade.color.WHITE, 20)
+
 
 
 def main():
