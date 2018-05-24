@@ -10,6 +10,7 @@ python -m arcade.examples.sprite_tiled_map
 
 import arcade
 import os
+import random
 
 SPRITE_SCALING = 0.5
 
@@ -90,9 +91,47 @@ class MyGame(arcade.Window):
         self.player_sprite.center_y = 270
         self.all_sprites_list.append(self.player_sprite)
 
-        # Get a 2D array made of numbers based on the map
-        map_array = get_map("map.csv")
+        
 
+        # Get a 2D array made of numbers based on the map
+                
+        
+        map_test = []
+        one = []
+        two = []
+        three = []
+        four = []
+        five = []
+        six = []
+        seven = []
+        
+
+        for i in range(100):
+            one.append(-1)
+            two.append(-1)
+            three.append(-1)
+            four.append(-1)
+            five.append(-1)
+            seven.append(2)
+
+        for i in range(25):
+            six.append(-1)
+            six.append(-1)
+            six.append(-1)
+            six.append(-1)
+            six.append(0)
+            
+
+        map_test.append(one)
+        map_test.append(two)
+        map_test.append(three)
+        map_test.append(four)
+        map_test.append(five)
+        map_test.append(six)
+        map_test.append(seven)
+        map_array = map_test
+
+                
         # Right edge of the map in pixels
         self.end_of_map = len(map_array[0]) * GRID_PIXEL_SIZE
 
